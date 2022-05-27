@@ -6,7 +6,7 @@
 /*   By: eflaquet <eflaquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:09:47 by eflaquet          #+#    #+#             */
-/*   Updated: 2022/05/27 21:03:46 by eflaquet         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:07:48 by eflaquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	get_read_file(int fd, char **trash, int *byte_ptr)
 			return ;
 		*trash[0] = 0;
 	}
-
 	while (!(ft_newline(*trash)) && *byte_ptr)
 	{
 		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
