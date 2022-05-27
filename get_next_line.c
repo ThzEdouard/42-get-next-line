@@ -6,7 +6,7 @@
 /*   By: eflaquet <eflaquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:09:47 by eflaquet          #+#    #+#             */
-/*   Updated: 2022/05/27 20:48:43 by eflaquet         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:03:46 by eflaquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*get_next_line(int fd)
 	byte = 1;
 	line = NULL;
 	get_read_file(fd, &trash, &byte);
+	if (trash == NULL)
+		return (NULL);
 	line = ft_substr(trash, 0, ft_lenline(trash));
 	trash = get_save_trash(trash, 0);
 	if (line[0] == 0 && trash == NULL)
@@ -36,7 +38,6 @@ char	*get_next_line(int fd)
 char	*get_save_trash(char *trash, int x)
 {
 	char	*save_trash;
-	int		new_line;
 	int		i;
 
 	i = 0;
@@ -60,8 +61,7 @@ char	*get_save_trash(char *trash, int x)
 
 void	get_read_file(int fd, char **trash, int *byte_ptr)
 {
-	char	buf[BUFFER_SIZE + 1];
-	char	*save_trash;
+	char	*buf;
 
 	if (!*trash)
 	{
@@ -70,12 +70,20 @@ void	get_read_file(int fd, char **trash, int *byte_ptr)
 			return ;
 		*trash[0] = 0;
 	}
+
 	while (!(ft_newline(*trash)) && *byte_ptr)
 	{
+		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (!buf)
+			return ;
 		*byte_ptr = read(fd, buf, BUFFER_SIZE);
 		if (*byte_ptr <= 0)
+		{
+			free(buf);
 			return ;
+		}
 		buf[*byte_ptr] = 0;
 		*trash = ft_strjoin(*trash, buf);
+		free(buf);
 	}
 }
