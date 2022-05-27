@@ -6,19 +6,14 @@
 /*   By: eflaquet <eflaquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:07:47 by eflaquet          #+#    #+#             */
-/*   Updated: 2022/05/27 18:40:17 by eflaquet         ###   ########.fr       */
+/*   Updated: 2022/05/27 21:58:22 by eflaquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
